@@ -44,5 +44,13 @@ export const co = {
         advt_space_id_list: advt_space_id_list
       }
     })
+  },
+
+  /**
+   * 删除一个方案
+   * @param {*} planId
+   */
+  deletePlan (planId) {
+    return http.delete(`/api/v1/coplan/${planId}`)
   }
 }

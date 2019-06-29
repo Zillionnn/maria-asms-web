@@ -1,10 +1,15 @@
 <template>
   <div>
-    <strong class="co_name">{{coName}}</strong>
+    <strong class="co_name">{{coName}} 方案</strong>
     <hr style="margin:20px 0;" />
     <div class="plan_list">
       <div v-for="(item, index) in coAdvtList" :key="index">
-        <div class="plan_name">{{item.plan_name}}</div>
+        <div class="plan_name">
+          <span>{{item.plan_name}}</span>
+          <span>
+            <v-icon small @click="deleteCoPlan(item)" title="删除此方案">delete</v-icon>
+          </span>
+        </div>
         <v-data-table :headers="headers" :items="item.data" hide-actions>
           <template slot="headerCell" slot-scope="{ header }">
             <span class="subheading font-weight-light text--darken-3" v-text="header.text" />
@@ -74,7 +79,28 @@ export default {
         .catch(err => {
           console.error(err)
         })
+    },
+    deleteCoPlan (plan) {
+      var r = confirm('确认删除？')
+      if (r) {
+        api.co.deletePlan(plan.plan_id)
+          .then(res => {
+            this.$message({
+              type: 'success',
+              message: '已删除此方案'
+            })
+            this.getCoPlanList()
+          })
+          .catch(err => {
+            this.$message({
+              type: 'error',
+              message: err
+            })
+            console.error(err)
+          })
+      }
     }
+    // //////////methods/////////
   }
 }
 </script>
