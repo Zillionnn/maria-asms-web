@@ -3,6 +3,7 @@
     <strong class="co_name">{{coName}} 方案</strong>
     <hr style="margin:20px 0;" />
     <div class="plan_list">
+      <div v-if="coAdvtList.length===0">暂无方案</div>
       <div v-for="(item, index) in coAdvtList" :key="index">
         <div class="plan_name">
           <span>{{item.plan_name}}</span>
@@ -20,6 +21,10 @@
             <td>{{ item.area_location }}</td>
             <td>{{ item.advt_space_position }}</td>
             <td>{{ item.advt_space_position_des }}</td>
+            <td>
+              <span v-if="item.isrented===0">否</span>
+              <span v-if="item.isrented===1">是</span>
+            </td>
             <td class="justify-center layout px-0">
               <v-icon small @click="deleteItem(item)">delete</v-icon>
             </td>
@@ -50,6 +55,7 @@ export default {
         { text: '小区地址', value: 'updatetime', sortable: false },
         { text: '灯箱位置', value: 'updatetime', sortable: false },
         { text: '位置描述', value: 'updatetime', sortable: false },
+        { text: '是否出租', value: 'updatetime', sortable: false },
         { text: 'DO', value: 'DO', sortable: false }
       ]
     }
@@ -83,7 +89,8 @@ export default {
     deleteCoPlan (plan) {
       var r = confirm('确认删除？')
       if (r) {
-        api.co.deletePlan(plan.plan_id)
+        api.co
+          .deletePlan(plan.plan_id)
           .then(res => {
             this.$message({
               type: 'success',

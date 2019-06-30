@@ -22,7 +22,7 @@
           <td v-formatTs="item.update_time">{{item.update_time}}</td>
           <td class="justify-center layout px-0">
             <v-icon small class="mr-2" @click="toSelectSpace(item)" color="#03a9f4">分配</v-icon>
-            <v-icon small class="mr-2" @click="toCoPlan(item)" color="#03a9f4">查看点位</v-icon>
+            <v-icon small class="mr-2" @click="toCoPlan(item)" color="#03a9f4">查看方案</v-icon>
           </td>
         </template>
       </v-data-table>
