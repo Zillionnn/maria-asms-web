@@ -113,20 +113,23 @@ export default {
      */
     deleteItem (item) {
       console.log(item)
-      api.co.deletePlanOneSpace(item.id)
-        .then(res => {
-          this.$message({
-            type: 'success',
-            message: '操作成功'
+      var r = confirm('确认删除？')
+      if (r) {
+        api.co.deletePlanOneSpace(item.id)
+          .then(res => {
+            this.$message({
+              type: 'success',
+              message: '操作成功'
+            })
+            this.getCoPlanList()
           })
-          this.getCoPlanList()
-        })
-        .catch(err => {
-          this.$message({
-            type: 'error',
-            message: err
+          .catch(err => {
+            this.$message({
+              type: 'error',
+              message: err
+            })
           })
-        })
+      }
     }
     // //////////methods/////////
   }
