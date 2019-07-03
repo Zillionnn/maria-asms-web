@@ -106,6 +106,27 @@ export default {
             console.error(err)
           })
       }
+    },
+
+    /**
+     * 删除一项
+     */
+    deleteItem (item) {
+      console.log(item)
+      api.co.deletePlanOneSpace(item.id)
+        .then(res => {
+          this.$message({
+            type: 'success',
+            message: '操作成功'
+          })
+          this.getCoPlanList()
+        })
+        .catch(err => {
+          this.$message({
+            type: 'error',
+            message: err
+          })
+        })
     }
     // //////////methods/////////
   }

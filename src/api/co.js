@@ -52,5 +52,12 @@ export const co = {
    */
   deletePlan (planId) {
     return http.delete(`/api/v1/coplan/${planId}`)
+  },
+
+  /**
+   * 删除方案中一个广告位
+   */
+  deletePlanOneSpace (id) {
+    return http.delete(`/api/v1/coplan/advtspace/${id}`)
   }
 }
