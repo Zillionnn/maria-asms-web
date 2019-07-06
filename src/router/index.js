@@ -79,6 +79,11 @@ export default new Router({
           component: () => import('@/components/page/areaAdvtMng/CoPlan/CoPlan.vue')
         },
         {
+          path: `/areaAdvtMng/releasecoplan`,
+          name: 'CoPlanToRelese',
+          component: () => import('@/components/page/areaAdvtMng/CoPlan/CoPlanToRelese.vue')
+        },
+        {
           path: '/',
           redirect: '/areaAdvtMng/Lease'
         }
