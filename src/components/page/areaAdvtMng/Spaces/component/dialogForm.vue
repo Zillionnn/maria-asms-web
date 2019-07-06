@@ -43,7 +43,7 @@
                 </div> -->
 
                 <!-- TODO? -->
-                <v-dialog v-model="datepicker" max-width="290px">
+                <!-- <v-dialog v-model="datepicker" max-width="290px">
                   <v-date-picker
                     v-model="form.expireDate"
                     @change="datepicker = false"
@@ -52,7 +52,7 @@
                 </v-dialog>
                  <v-dialog v-model="timepicker" max-width="290px">
                      <v-time-picker v-model="form.expireHour" @change="datepicker = false"  format="24hr"></v-time-picker>
-                </v-dialog>
+                </v-dialog> -->
 
               <v-text-field v-model="form.advt_space_position" :counter="20" label="编号" required></v-text-field>
                 <v-text-field

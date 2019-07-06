@@ -9,6 +9,9 @@
           <span>{{item.plan_name}}</span>
           <span>
             <v-icon small @click="deleteCoPlan(item)" title="删除此方案">delete</v-icon>
+            <!-- 发布方案 -->
+            <lease-time-dialog :dialog="dialog" @open="openDialog()" @cancel="cancelDialog()" @submit="releasePlan(item,arguments)" />
+
           </span>
         </div>
         <v-data-table :headers="headers" :items="item.data" hide-actions>
@@ -37,6 +40,8 @@
 
 <script>
 import * as api from '@/api/index'
+import LeaseTimeDialog from './component/LeaseTimeDialog'
+
 export default {
   name: 'CoPlan',
   data () {
@@ -57,10 +62,17 @@ export default {
         { text: '位置描述', value: 'updatetime', sortable: false },
         { text: '是否出租', value: 'updatetime', sortable: false },
         { text: 'DO', value: 'DO', sortable: false }
-      ]
+      ],
+      dialog: {
+        mode: 'add',
+        visible: false,
+        info: null
+      }
     }
   },
-  components: {},
+  components: {
+    LeaseTimeDialog
+  },
   computed: {
     selectedSpace () {
       return this.$store.getters.selectedSpace
@@ -130,6 +142,39 @@ export default {
             })
           })
       }
+    },
+
+    /**
+    * 方案转为正式方案
+    */
+    releasePlan (i, args) {
+      console.log(i, args)
+      i.expire_time = args[0].expire_time
+      api.areaAdvt.releasePlan(i)
+        .then(res => {
+          this.cancelDialog()
+          this.$message({
+            type: 'success',
+            message: '操作成功'
+          })
+        })
+        .catch(err => {
+          this.$message({
+            type: 'error',
+            message: err
+          })
+          console.error(err)
+        })
+    },
+
+    openDialog () {
+      this.dialog = {
+        mode: 'add',
+        visible: true
+      }
+    },
+    cancelDialog () {
+      this.dialog.visible = false
     }
     // //////////methods/////////
   }
