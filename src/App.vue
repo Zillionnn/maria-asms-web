@@ -79,6 +79,11 @@ export default {
           title: '概览',
           route: '/'
         },
+        // {
+        //   action: 'local_activity',
+        //   title: '广告位',
+        //   route: '/allSpace'
+        // },
         {
           action: 'done_all',
           title: '租赁',

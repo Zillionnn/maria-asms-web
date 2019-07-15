@@ -14,6 +14,11 @@ export default new Router({
       component: Home
     },
     {
+      path: '/allSpace',
+      name: 'allSpace',
+      component: () => import('@/components/page/AllSpace/AllSpace.vue')
+    },
+    {
       path: '/setting',
       name: 'setting',
       // component: Setting
