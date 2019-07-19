@@ -58,6 +58,7 @@ export default {
     },
     // 提交
     subPlan (data) {
+      this.valid = false
       api.co.addCoPlan(data)
         .then(res => {
           this.$message({

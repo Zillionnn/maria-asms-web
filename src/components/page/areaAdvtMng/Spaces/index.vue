@@ -124,6 +124,7 @@
           <td>{{props.item.advt_space_position}}</td>
           <td>{{props.item.advt_space_position_des}}</td>
           <td>
+            <!-- <span v-if="props.item.isrented===0" style="color:#000000;background:#cccccc;padding:7px;border-radius:2px;">否</span> -->
             <span v-if="props.item.isrented===0">否</span>
             <span v-if="props.item.isrented===1">是</span>
           </td>

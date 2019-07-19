@@ -186,4 +186,7 @@ export default {
   justify-content: space-between;
   flex-direction: row;
 }
+.pointer{
+  cursor:pointer;
+}
 </style>

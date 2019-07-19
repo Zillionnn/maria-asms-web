@@ -10,7 +10,9 @@
           <span>
             <v-icon small @click="deleteCoPlan(item)" title="删除此方案">delete</v-icon>
             <!-- 发布方案 -->
-            <i @click="toRelease(item)">发布方案</i>
+            <i @click="toRelease(item)" class="pointer">发布方案</i>
+
+             <v-btn @click="exportPlan(item)">导出</v-btn>
 
           </span>
         </div>
@@ -144,6 +146,10 @@ export default {
     toRelease (item) {
       this.$store.dispatch('passCoplan', item)
       this.$router.push({path: `/areaAdvtMng/releasecoplan`})
+    },
+    exportPlan (item) {
+      console.log(item)
+      api.file.exportExcel(item.plan_id)
     }
     // //////////methods/////////
   }

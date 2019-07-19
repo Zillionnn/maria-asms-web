@@ -5,6 +5,8 @@ import {co} from './co'
 import {advt} from './advt'
 import {rdtlarea} from './rdtlarea'
 import {setting} from './setting'
+import {file} from './file'
+
 var instance = axios.create({
   baseURL: conf.URL
 })
@@ -38,4 +40,4 @@ export const http = {
   }
 }
 
-export {areaAdvt, co, advt, rdtlarea, setting}
+export {areaAdvt, co, advt, rdtlarea, setting, file}
