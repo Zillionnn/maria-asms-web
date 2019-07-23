@@ -1,7 +1,9 @@
 <template>
   <div class="page">
     <div style="width: 100%;height:auto;">
-        <span class="head_text">未租用的广告位：{{norent}}</span>
+        <span class="head_text">未租用的广告位：{{norent}}</span><v-btn>导出</v-btn>
+        <span class="head_text">已租广告位：</span><v-btn>导出</v-btn>
+
     </div>
   </div>
 </template>
