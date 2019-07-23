@@ -44,6 +44,9 @@ export const areaAdvt = {
   countNoRent () {
     return http.get(`/api/v1/areaAdvt/norent/count`)
   },
+  countIsRent () {
+    return http.get(`/api/v1/areaAdvt/isrented/count`)
+  },
 
   releasePlan (list) {
     return http.put(`/api/v1/coplan/areaAdvt/release-space`, {
