@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <div style="width: 100%;height:auto;">
-        <span class="head_text">未租用的广告位：{{norent}}</span><v-btn>导出</v-btn>
-        <span class="head_text">已租广告位：</span><v-btn>导出</v-btn>
+        <span class="head_text">未租用的广告位：{{norent}}</span><v-btn @click="exportNoRented()">导出</v-btn>
+        <span class="head_text">已租广告位：{{isRentedNum}}</span><v-btn @click="exportIsRented()">导出</v-btn>
 
     </div>
   </div>
@@ -16,11 +16,13 @@ export default {
 
   data () {
     return {
-      norent: 0
+      norent: 0,
+      isRentedNum: 0
     }
   },
   created () {
     this.getNoRent()
+    this.getIsRent()
   },
   mounted () {
 
@@ -29,7 +31,7 @@ export default {
     getNoRent () {
       api.areaAdvt.countNoRent()
         .then(r => {
-          this.norent = r.data.data[0].count
+          this.norent = r.data.data.count
         })
         .catch(err => {
           console.error(err)
@@ -38,7 +40,30 @@ export default {
             message: err
           })
         })
+    },
+
+    getIsRent () {
+      api.areaAdvt.countIsRent()
+        .then(r => {
+          this.isRentedNum = r.data.data.count
+        })
+        .catch(err => {
+          console.error(err)
+          this.$message({
+            type: 'error',
+            message: err
+          })
+        })
+    },
+
+    exportNoRented () {
+      api.file.exportRentedExcel(0)
+    },
+
+    exportIsRented () {
+      api.file.exportRentedExcel(1)
     }
+    // ////////////////////methods
   }
 
 }

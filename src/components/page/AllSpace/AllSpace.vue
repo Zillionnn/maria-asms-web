@@ -541,7 +541,7 @@ export default {
     getNoRent () {
       api.areaAdvt.countNoRent()
         .then(r => {
-          this.norent = r.data.data[0].count
+          this.norent = r.data.data.count
         })
         .catch(err => {
           console.error(err)
