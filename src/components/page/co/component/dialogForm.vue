@@ -14,6 +14,11 @@
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field v-model="form.name" :counter="20" :rules="nameRules" label="公司名称" required></v-text-field>
             <!-- <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field> -->
+           <v-text-field v-model="form.contact" :counter="20" label="联系人"></v-text-field>
+           <v-text-field v-model="form.phone" :counter="20" label="电话" required></v-text-field>
+
+            <v-text-field v-model="form.address" :counter="20"  label="地址" required></v-text-field>
+
           </v-form>
         </v-container>
       </v-card-text>

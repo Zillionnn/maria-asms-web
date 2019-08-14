@@ -9,17 +9,23 @@ export const co = {
     const limit = 500
     return http.get(`/api/v1/co/list?offset=${offset}&limit=${limit}`)
   },
-  addCo ({name}) {
+  addCo ({name, contact, phone, address}) {
     return http.post(`/api/v1/co/add`, {
       data: {
-        name: name
+        name: name,
+        contact: contact,
+        phone: phone,
+        address: address
       }
     })
   },
-  updateCo ({id, name}) {
+  updateCo ({id, name, contact, phone, address}) {
     return http.put(`/api/v1/co/${id}`, {
       data: {
-        name: name
+        name: name,
+        contact: contact,
+        phone: phone,
+        address: address
       }
     })
   },
