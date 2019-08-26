@@ -69,7 +69,7 @@
                   label="类别"
                 ></v-select>
                  <v-select
-                  v-model="form.is_realestate"
+                  v-model="form.is_exclusive"
                   :items="realestateList"
                   item-text="name"
                   item-value="value"

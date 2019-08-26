@@ -10,7 +10,7 @@ export const rdtlarea = {
     return http.get(`/api/v1/rdtlarea/list?offset=${offset}&limit=${limit}`)
   },
   // eslint-disable-next-line
-  addArea({ section, serial, name, position, lng, lat, category, live_size, parking_num, location, avg_daily_traffic, image, is_realestate }) {
+  addArea({ section, serial, name, position, lng, lat, category, live_size, parking_num, location, avg_daily_traffic, image, is_exclusive }) {
     let lnglat = null
     if (lng && lat) {
       lnglat = `(${lng},${lat})`
@@ -27,12 +27,12 @@ export const rdtlarea = {
         parking_num: parking_num,
         location: location,
         avg_daily_traffic: avg_daily_traffic,
-        is_realestate: is_realestate
+        is_exclusive: is_exclusive
       }
     })
   },
   // eslint-disable-next-line
-  updateArea({ id, section, serial, name, position, lng, lat, category, live_size, parking_num, location, avg_daily_traffic, is_realestate }) {
+  updateArea({ id, section, serial, name, position, lng, lat, category, live_size, parking_num, location, avg_daily_traffic, is_exclusive }) {
     let lnglat = null
     if (lng && lat) {
       lnglat = `(${lng},${lat})`
@@ -50,7 +50,7 @@ export const rdtlarea = {
         parking_num: parking_num,
         location: location,
         avg_daily_traffic: avg_daily_traffic,
-        is_realestate: is_realestate
+        is_exclusive: is_exclusive
       }
     })
   },

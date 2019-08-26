@@ -97,7 +97,7 @@ export default {
         { text: '区域', value: 'section', sortable: false },
         // { text: '位置', value: 'position', sortable: false },
         { text: '类型', value: 'category', sortable: false },
-        { text: '楼盘', value: 'isRealestate', sortable: false },
+        { text: '排他', value: 'is_exclusive', sortable: false },
         { text: '规模', value: 'live_size', sortable: false },
         { text: '停车位', value: 'parking_num', sortable: false },
         { text: '地址', value: 'location', sortable: false },

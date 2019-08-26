@@ -218,7 +218,7 @@ export default {
         { text: '灯箱位置', value: 'position', sortable: false },
         { text: '位置描述', value: 'location', sortable: false },
         { text: '是否出租', value: 'isrented', sortable: false, filter: true },
-        { text: '楼盘', value: 'is_realestate', sortable: false, filter: true },
+        { text: '排他', value: 'is_exclusive', sortable: false, filter: true },
         { text: '到期时间', value: 'lease_time', sortable: false },
         { text: '尺寸', value: 'size', sortable: false },
         { text: '图片', value: 'advt_position_image', sortable: false },
