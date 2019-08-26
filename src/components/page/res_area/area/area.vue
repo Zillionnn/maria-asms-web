@@ -7,7 +7,7 @@
         :dialog="dialog"
         @open="openDialog()"
         @cancel="cancelDialog()"
-        @submit="addCo"
+        @submit="addRsArea"
         @update="updateCo"
       ></dialog-form>
       <v-data-table :headers="headers" :items="tableData" hide-actions>
@@ -20,11 +20,10 @@
           <td>{{item.section}}</td>
           <!-- <td>{{item.position}}</td> -->
           <td>
-            <span v-if="item.category===0">住宅</span>
-            <span v-if="item.category===1">商业中心</span>
+            <span>{{formatCategory(item.category)}}</span>
           </td>
           <td>
-            <span v-if="item.is_realestate">是</span>
+            <span v-if="item.is_exclusive">是</span>
             <span v-else>否</span>
           </td>
           <td>{{item.live_size}}</td>
@@ -157,7 +156,7 @@ export default {
     /**
     添加
      */
-    addCo (form) {
+    addRsArea (form) {
       api.rdtlarea
         .addArea(form)
         .then(r => {
@@ -215,6 +214,21 @@ export default {
     // 查看广告位
     toAdvtSpace (id) {
       this.$router.push({ path: `/resdentialArea/${id}` })
+    },
+
+    formatCategory (c) {
+      switch (c) {
+        case 0:
+          return '住宅'
+        case 1:
+          return '商业中心'
+        case 2:
+          return '写字楼'
+        case 3:
+          return '商务中心'
+        case 4:
+          return '酒店'
+      }
     }
     // methods
   }

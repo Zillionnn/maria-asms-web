@@ -73,7 +73,7 @@
                   :items="realestateList"
                   item-text="name"
                   item-value="value"
-                  label="是否楼盘"
+                  label="是否排他"
                 ></v-select>
                 <v-text-field
                   v-model="form.live_size"
