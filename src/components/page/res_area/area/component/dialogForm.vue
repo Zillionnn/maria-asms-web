@@ -149,6 +149,18 @@ export default {
         {
           name: '商业中心',
           value: 1
+        },
+        {
+          name: '写字楼',
+          value: 2
+        },
+        {
+          name: '商务中心',
+          value: 3
+        },
+        {
+          name: '酒店',
+          value: 4
         }
       ],
       realestateList: [
