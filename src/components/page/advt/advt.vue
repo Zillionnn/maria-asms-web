@@ -14,7 +14,7 @@
           <td>{{item.co_name}}</td>
           <td>{{item.location}}</td>
           <td>{{item.lease_time}} {{formatUnit(item.lease_time_unit)}}</td>
-          <td>{{item.size}}</td>
+          <!-- <td>{{item.size}}</td> -->
           <td v-formatTs="item.update_time"></td>
           <td class="justify-center layout px-0">
             <v-icon small class="mr-2" @click="editItem(item)">edit</v-icon>
@@ -80,7 +80,7 @@ export default {
         { text: '公司', value: 'co_id', sortable: false },
         { text: '地址', value: 'location', sortable: false },
         { text: '有效时间剩余', value: 'lease_time', sortable: false },
-        { text: '尺寸', value: 'size', sortable: false },
+        // { text: '尺寸', value: 'size', sortable: false },
         { text: '更新时间', value: 'updatetime', sortable: false },
         { text: 'DO', value: 'DO', sortable: false }
       ],
