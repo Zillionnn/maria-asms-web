@@ -72,11 +72,11 @@
         ></v-combobox>
         <v-select
           class="mr-2"
-          v-model="queryObj.isRealestate"
+          v-model="queryObj.is_exclusive"
           :items="isRealestateList"
           item-text="title"
           item-value="value"
-          label="是否楼盘"
+          label="是否排他"
           clearable
         ></v-select>
         <v-select
@@ -129,8 +129,8 @@
             <span v-if="props.item.isrented===1">是</span>
           </td>
           <td>
-            <span v-if="props.item.is_realestate===false">否</span>
-            <span v-if="props.item.is_realestate===true">是</span>
+            <span v-if="props.item.is_exclusive">是</span>
+            <span v-else>否</span>
           </td>
           <td>{{ftoLocalDate(props.item.expire_time)}}</td>
 
@@ -255,6 +255,7 @@ export default {
     }
   },
   created () {
+    console.log('=============Spaces/index.vue===========')
     this.getAreaList()
   },
   mounted () {
@@ -272,10 +273,10 @@ export default {
       } else {
         this.queryObj.isrented = []
       }
-      if (this.queryObj.isRealestate === undefined) {
-        this.queryObj.is_realestate = []
+      if (this.queryObj.is_exclusive === undefined) {
+        this.queryObj.is_exclusive = []
       } else {
-        this.queryObj.is_realestate = [this.queryObj.isRealestate]
+        this.queryObj.is_exclusive = [this.queryObj.is_exclusive]
       }
 
       if (this.queryObj.lightSize) {

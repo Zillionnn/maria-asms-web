@@ -36,14 +36,7 @@
                   label="地址"
                   required
                 ></v-text-field>
-                <v-text-field
-                    v-model="form.width"
-                    label="宽"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="form.height"
-                    label="高"
-                  ></v-text-field>
+
                 <div class="flex_space_around">
 
                 <v-text-field

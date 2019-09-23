@@ -253,6 +253,7 @@ export default {
     }
   },
   created () {
+    console.log('================AllSpace.vue============')
     this.getAreaList()
     this.getNoRent()
   },

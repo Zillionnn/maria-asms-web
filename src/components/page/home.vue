@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     <div style="width: 100%;height:auto;">
+        <v-btn @click="exportAll()">导出所有</v-btn>
         <span class="head_text">未租用的广告位：{{norent}}</span><v-btn @click="exportNoRented()">导出</v-btn>
         <span class="head_text">已租广告位：{{isRentedNum}}</span><v-btn @click="exportIsRented()">导出</v-btn>
 
@@ -62,6 +63,10 @@ export default {
 
     exportIsRented () {
       api.file.exportRentedExcel(1)
+    },
+
+    exportAll () {
+      api.file.exportRentedExcel(2)
     }
     // ////////////////////methods
   }
