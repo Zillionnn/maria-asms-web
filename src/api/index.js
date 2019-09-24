@@ -29,13 +29,13 @@ export const http = {
     console.log(process.env.NODE_ENV)
     return instance.get(url)
   },
-  post (url, data) {
-    return instance.post(url, data)
+  post (url, data, config) {
+    return instance.post(url, data, config)
   },
-  delete (url) {
+  delete (url, config) {
     return instance.delete(url)
   },
-  put (url, data) {
+  put (url, data, config) {
     return instance.put(url, data)
   }
 }
