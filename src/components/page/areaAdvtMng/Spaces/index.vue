@@ -264,6 +264,7 @@ export default {
   methods: {
     getList (val) {
       console.log('SELECTED selectedSpace ', this.selectedSpace)
+      console.log('this.queryObj.is_exclusive>>s', this.queryObj.is_exclusive)
       this.pagination.page = val === undefined ? 1 : val
       let offset =
         val === undefined ? 0 : this.pagination.rowsPerPage * (val - 1)
@@ -273,9 +274,10 @@ export default {
       } else {
         this.queryObj.isrented = []
       }
+
       if (this.queryObj.is_exclusive === undefined) {
         this.queryObj.is_exclusive = []
-      } else {
+      } else if (this.queryObj.is_exclusive.length > 0) {
         this.queryObj.is_exclusive = [this.queryObj.is_exclusive]
       }
 
