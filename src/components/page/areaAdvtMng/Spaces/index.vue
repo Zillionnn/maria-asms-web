@@ -72,7 +72,7 @@
         ></v-combobox>
         <v-select
           class="mr-2"
-          v-model="queryObj.is_exclusive"
+          v-model="queryObj.isExclusive"
           :items="isRealestateList"
           item-text="title"
           item-value="value"
@@ -275,10 +275,10 @@ export default {
         this.queryObj.isrented = []
       }
 
-      if (this.queryObj.is_exclusive === undefined) {
+      if (this.queryObj.isExclusive === undefined) {
         this.queryObj.is_exclusive = []
-      } else if (this.queryObj.is_exclusive.length > 0) {
-        this.queryObj.is_exclusive = [this.queryObj.is_exclusive]
+      } else {
+        this.queryObj.is_exclusive = [this.queryObj.isExclusive]
       }
 
       if (this.queryObj.lightSize) {
