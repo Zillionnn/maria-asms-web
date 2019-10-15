@@ -34,7 +34,7 @@
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>中山市一环传媒有限公司</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-toolbar-items>
