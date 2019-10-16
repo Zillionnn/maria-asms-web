@@ -3,7 +3,7 @@
     <p class="title">{{selectedCO.name}}</p>
 
     <v-form ref="form" v-model="valid" lazy-validation style="width:300px;">
-      <v-text-field v-model="form.plan_name" :counter="20" :rules="nameRules" label="方案名称" required></v-text-field>
+      <v-text-field v-model="form.plan_name" :counter="50" :rules="nameRules" label="方案名称" required></v-text-field>
       <!-- <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field> -->
     </v-form>
     <div>
