@@ -36,7 +36,7 @@ export default {
       valid: true,
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 20) || 'Name must be less than 20 characters'
+        v => (v && v.length <= 50) || '不超过50个字'
       ],
       form: {}
     }
