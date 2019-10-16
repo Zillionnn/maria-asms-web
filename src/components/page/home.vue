@@ -4,6 +4,9 @@
         <v-btn @click="exportAll()">导出所有</v-btn>
         <span class="head_text">未租用的广告位：{{norent}}</span><v-btn @click="exportNoRented()">导出</v-btn>
         <span class="head_text">已租广告位：{{isRentedNum}}</span><v-btn @click="exportIsRented()">导出</v-btn>
+        <!-- <div style="width: 100%; height:800px;">
+          <baidu-map/>
+        </div> -->
 
     </div>
   </div>
@@ -11,9 +14,13 @@
 
 <script>
 import * as api from '@/api/index'
+import BaiduMap from '@/components/common/Map/BaiduMap/BaiduMap.vue'
+
 export default {
   name: 'home',
-  components: {},
+  components: {
+    BaiduMap
+  },
 
   data () {
     return {
