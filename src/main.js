@@ -10,6 +10,7 @@ import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import {Upload} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import zAlert from '@/components/common/message/index'
+import BaiduMap from 'vue-baidu-map'
 
 import { formatTime } from '@/utils/tool'
 
@@ -26,7 +27,9 @@ Vue.use(Vuetify, {
     error: '#b71c1c'
   }
 })
-
+Vue.use(BaiduMap, {
+  ak: 'a9vuIV3M4rda1DDM7AqaHc4dupoIRGcO'
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
