@@ -63,7 +63,7 @@
       <v-card>
         <v-card-title class="headline"></v-card-title>
         <v-card-text>
-          <advertise-space :isPage="false" @doAddSpace="addPlan"></advertise-space>
+          <advertise-space ref="spaceTable" :isPage="false" @doAddSpace="addPlan"></advertise-space>
         </v-card-text>
         <!-- <v-card-actions>
           <v-spacer></v-spacer>
@@ -264,7 +264,7 @@ export default {
      */
     showAddSpaceDialog (plan) {
       console.log(plan)
-      this.$store.dispatch('passClearSelected')
+      this.$refs.spaceTable.clearSelected()
       this.addSpaceDialog.planId = plan.plan_id
       this.addSpaceDialog.visible = true
     },
