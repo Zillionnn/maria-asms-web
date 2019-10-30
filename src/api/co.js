@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {http} from './index'
 
 export const co = {
@@ -65,5 +66,12 @@ export const co = {
    */
   deletePlanOneSpace (id) {
     return http.delete(`/api/v1/coplan/advtspace/${id}`)
+  },
+
+  updatePlanName ({plan_id, plan_name}) {
+    return http.put(`/api/v1/co-plan/plan-name`, {
+      id: plan_id,
+      plan_name: plan_name
+    })
   }
 }
