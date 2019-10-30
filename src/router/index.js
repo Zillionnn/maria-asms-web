@@ -64,8 +64,8 @@ export default new Router({
       children: [
         {
           path: '/areaAdvtMng/spaces',
-          name: 'resarea',
-          component: () => import('@/components/page/areaAdvtMng/Spaces/index.vue')
+          name: 'AdvertiseSpace',
+          component: () => import('@/components/page/areaAdvtMng/Spaces/AdvertiseSpace.vue')
         },
         {
           path: '/areaAdvtMng/Lease',

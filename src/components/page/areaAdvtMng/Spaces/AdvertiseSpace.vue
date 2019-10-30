@@ -166,7 +166,7 @@ import DialogForm from './component/DialogForm'
 import AdvtSpaceUploadXls from './component/AdvtSpaceUploadXls'
 import { toLocalDate } from '@/utils/tool'
 export default {
-  name: 'areaAdvtMng',
+  name: 'AdvertiseSpace',
   components: {
     DialogForm,
     AdvtSpaceUploadXls
