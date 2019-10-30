@@ -40,7 +40,7 @@ export const co = {
   },
 
   /**
-   * 添加一个企业方案未定
+   * 添加一个企业方案
    */
   // eslint-disable-next-line
   addCoPlan ({co_id, plan_name, advt_space_id_list}) {
@@ -66,6 +66,18 @@ export const co = {
    */
   deletePlanOneSpace (id) {
     return http.delete(`/api/v1/coplan/advtspace/${id}`)
+  },
+
+  /**
+   *  已有方案添加 space
+   * @param {*} param0
+   */
+  addPlanSpace ({plan_id, co_id, space_list}) {
+    return http.post(`/api/v1/coplan/advtspace/add`, {
+      plan_id: plan_id,
+      co_id: co_id,
+      space_list: space_list
+    })
   },
 
   updatePlanName ({plan_id, plan_name}) {

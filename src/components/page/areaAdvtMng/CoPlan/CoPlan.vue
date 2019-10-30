@@ -1,6 +1,7 @@
 <template>
   <div>
     <strong class="co_name">{{coName}} 方案</strong>
+    <span @click="goBack()" style="float:right; cursor:pointer;">返回</span>
     <hr style="margin:20px 0;" />
     <div class="plan_list">
       <div v-if="coPlanList.length===0">暂无方案</div>
@@ -17,6 +18,7 @@
           <span>
             <v-icon small @click="setEdit(item)" id="editBtn" title="修改方案名称">edit</v-icon>
             <v-icon small @click="deleteCoPlan(item)" title="删除此方案">delete</v-icon>
+            <v-icon small @click="showAddSpaceDialog(item)">add</v-icon>
             <!-- 发布方案 -->
             <i @click="toRelease(item)" class="pointer">发布方案</i>
 
@@ -38,7 +40,6 @@
               <span v-if="item.isrented===1">是</span>
             </td>
             <td class="justify-center layout px-0">
-              <v-icon small @click="addSpaceDialog=true">add</v-icon>
               <v-icon small @click="deleteItem(item)">delete</v-icon>
             </td>
           </template>
@@ -58,7 +59,7 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="addSpaceDialog" max-width="95%">
+    <v-dialog v-model="addSpaceDialog.visible" max-width="95%">
       <v-card>
         <v-card-title class="headline"></v-card-title>
         <v-card-text>
@@ -68,7 +69,7 @@
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click="cancelPlanChange()">取消</v-btn>
           <v-btn color="green darken-1" text @click="subUpdatePlanName()">确认</v-btn>
-        </v-card-actions> -->
+        </v-card-actions>-->
       </v-card>
     </v-dialog>
   </div>
@@ -86,7 +87,10 @@ export default {
   data () {
     return {
       dialog: false,
-      addSpaceDialog: false,
+      addSpaceDialog: {
+        plan_id: null,
+        visible: false
+      },
       coPlanList: [],
       queryObj: {},
       pagination: {
@@ -255,8 +259,42 @@ export default {
       this.changedPlan.edit = false
     },
 
-    addPlan (planList) {
-      console.log(planList)
+    showAddSpaceDialog (plan) {
+      console.log(plan)
+      this.addSpaceDialog.planId = plan.plan_id
+      this.addSpaceDialog.visible = true
+    },
+    /**
+     * 添加一个space 到plan
+     */
+    addPlan (list) {
+      api.co
+        .addPlanSpace({
+          space_list: list,
+          plan_id: this.addSpaceDialog.planId,
+          co_id: this.coId
+        })
+        .then(res => {
+          this.$message({
+            type: 'success',
+            message: '成功'
+          })
+          this.getCoPlanList()
+        })
+        .catch(err => {
+          this.$message({
+            type: 'error',
+            message: err
+          })
+          console.error(err)
+        })
+        .finally(r => {
+          this.addSpaceDialog.visible = false
+        })
+    },
+
+    goBack () {
+      this.$router.push({ path: `/areaAdvtMng/Lease` })
     }
     // //////////methods/////////
   }
