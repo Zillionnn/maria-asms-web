@@ -1,14 +1,14 @@
 <template>
   <!-- ###############################################投放方案################################################# -->
   <div class="page">
-    <h2>租赁 / 广告位</h2>
+    <h2 v-if="isPage">租赁 / 广告位</h2>
     <div style="width: 100%;height:900px;margin-top: 23px;">
-      <div>
+      <div v-if="isPage">
         企业：
         <span style="font-size:20px;font-weight:bold;">{{selectedCO.name}}</span>
       </div>
       <!-- 添加的form -->
-      <div style="display:flex;justify-content:space-around;">
+      <div v-if="isPage" style="display:flex;justify-content:space-around;">
         <v-btn color="primary" dark to="/resdentialArea/areas">添加更多广告位</v-btn>
         <advt-space-upload-xls/>
       </div>
@@ -89,7 +89,8 @@
         ></v-select>
       </div>
       <v-btn color="primary" @click="getList()">查询</v-btn>
-      <v-btn @click="toRentPage()">出租</v-btn>
+      <v-btn v-if="isPage" @click="toRentPage()">出租</v-btn>
+      <v-btn v-if="!isPage" @click="sendToPlan()">添加到方案</v-btn>
       <v-btn @click="clearSelected()">清空选中</v-btn>
 
       <v-data-table :headers="headers" :items="tableData" hide-actions selectAll v-model="selected">
@@ -170,6 +171,13 @@ export default {
   components: {
     DialogForm,
     AdvtSpaceUploadXls
+  },
+  props: {
+    isPage: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
   },
   computed: {
     pages () {
@@ -474,7 +482,19 @@ export default {
         this.toLease()
       }
     },
-
+    sendToPlan () {
+      if (this.selectedSpace.length === 0) {
+        this.$message({
+          type: 'warning',
+          message: '未选中一项'
+        })
+      } else {
+        // this.$router.push({ path: `/areaAdvtMng/Lease` })
+        let advtSpaceList = this.$store.getters.selectedSpace
+        console.log(advtSpaceList)
+        this.$emit('doAddSpace', advtSpaceList)
+      }
+    },
     clearSelected () {
       console.log(this.toggleAllCkBox)
       this.toggleAllCkBox = false

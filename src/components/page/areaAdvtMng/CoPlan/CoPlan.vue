@@ -38,6 +38,7 @@
               <span v-if="item.isrented===1">是</span>
             </td>
             <td class="justify-center layout px-0">
+              <v-icon small @click="addSpaceDialog=true">add</v-icon>
               <v-icon small @click="deleteItem(item)">delete</v-icon>
             </td>
           </template>
@@ -56,18 +57,36 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog v-model="addSpaceDialog" max-width="95%">
+      <v-card>
+        <v-card-title class="headline"></v-card-title>
+        <v-card-text>
+          <advertise-space :isPage="false" @doAddSpace="addPlan"></advertise-space>
+        </v-card-text>
+        <!-- <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="cancelPlanChange()">取消</v-btn>
+          <v-btn color="green darken-1" text @click="subUpdatePlanName()">确认</v-btn>
+        </v-card-actions> -->
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
 <script>
 import * as api from '@/api/index'
+import AdvertiseSpace from '../Spaces/AdvertiseSpace.vue'
 
 export default {
   name: 'CoPlan',
-  components: {},
+  components: {
+    AdvertiseSpace
+  },
   data () {
     return {
       dialog: false,
+      addSpaceDialog: false,
       coPlanList: [],
       queryObj: {},
       pagination: {
@@ -213,7 +232,11 @@ export default {
       this.dialog = false
       console.log(this.selectPlan)
 
-      api.co.updatePlanName({plan_id: this.changedPlan.plan_id, plan_name: this.changedPlan.plan_name})
+      api.co
+        .updatePlanName({
+          plan_id: this.changedPlan.plan_id,
+          plan_name: this.changedPlan.plan_name
+        })
         .then(res => {
           this.$message({
             type: 'success',
@@ -230,6 +253,10 @@ export default {
       this.getCoPlanList()
       this.dialog = false
       this.changedPlan.edit = false
+    },
+
+    addPlan (planList) {
+      console.log(planList)
     }
     // //////////methods/////////
   }
