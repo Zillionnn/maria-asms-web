@@ -259,8 +259,12 @@ export default {
       this.changedPlan.edit = false
     },
 
+    /**
+     * 打开添加广告位到plan 的dialog
+     */
     showAddSpaceDialog (plan) {
       console.log(plan)
+      this.$store.dispatch('passClearSelected')
       this.addSpaceDialog.planId = plan.plan_id
       this.addSpaceDialog.visible = true
     },
