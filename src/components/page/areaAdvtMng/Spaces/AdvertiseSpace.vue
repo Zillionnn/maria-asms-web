@@ -5,12 +5,16 @@
     <div style="width: 100%;height:900px;margin-top: 23px;">
       <div v-if="isPage">
         企业：
-        <span style="font-size:20px;font-weight:bold;">{{selectedCO.name}}</span>
+        <span style="font-size:20px;font-weight:bold;">
+          {{
+          selectedCO.name
+          }}
+        </span>
       </div>
       <!-- 添加的form -->
       <div v-if="isPage" style="display:flex;justify-content:space-around;">
         <v-btn color="primary" dark to="/resdentialArea/areas">添加更多广告位</v-btn>
-        <advt-space-upload-xls/>
+        <advt-space-upload-xls />
       </div>
 
       <dialog-form
@@ -113,35 +117,41 @@
               v-model="props.selected"
               primary
               hide-details
-              @change="checkSelectedSp(props.item,arguments)"
-              :disabled="props.item.isrented===1"
+              @change="checkSelectedSp(props.item, arguments)"
+              :disabled="props.item.isrented === 1"
             ></v-checkbox>
           </td>
-          <td>{{ props.item.area_name }}</td>
-          <td>{{props.item.section}}</td>
-          <td>{{props.item.area_location}}</td>
-          <td>{{props.item.co_name}}</td>
-          <td>{{props.item.advt_name}}</td>
-          <td>{{props.item.advt_space_position}}</td>
-          <td>{{props.item.advt_space_position_des}}</td>
+          <td>
+            <span style="width: 90px;display:inline-block;">{{ props.item.area_name }}</span>
+          </td>
+          <td>{{ props.item.section }}</td>
+          <td>
+            <span class="elli" :title="props.item.area_location">{{ props.item.area_location }}</span>
+          </td>
+          <td>{{ props.item.co_name }}</td>
+          <td>{{ props.item.advt_name }}</td>
+          <td>{{ props.item.advt_space_position }}</td>
+          <td>{{ props.item.advt_space_position_des }}</td>
           <td>
             <!-- <span v-if="props.item.isrented===0" style="color:#000000;background:#cccccc;padding:7px;border-radius:2px;">否</span> -->
-            <span v-if="props.item.isrented===0">否</span>
-            <span v-if="props.item.isrented===1">是</span>
+            <span v-if="props.item.isrented === 0">否</span>
+            <span v-if="props.item.isrented === 1">是</span>
           </td>
           <td>
             <span v-if="props.item.is_exclusive">是</span>
             <span v-else>否</span>
           </td>
-          <td>{{ftoLocalDate(props.item.expire_time)}}</td>
+          <td>{{ ftoLocalDate(props.item.expire_time) }}</td>
 
           <td>
-            <span
-              v-if="props.item.light_size"
-            >{{props.item.light_size[0]}}*{{props.item.light_size[1]}}</span>
+            <span v-if="props.item.light_size">
+              {{ props.item.light_size[0] }}*{{
+              props.item.light_size[1]
+              }}
+            </span>
           </td>
           <td>
-            <img :src="props.item.advt_position_image" width="200px" height="100px">
+            <img :src="props.item.advt_position_image" width="200px" height="100px" />
           </td>
           <td class="justify-center layout px-0">
             <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
@@ -155,6 +165,7 @@
           :length="pages"
           @input="doInput"
           style="float:right;"
+          :total-visible="8"
         ></v-pagination>
       </div>
     </div>
@@ -537,7 +548,9 @@ export default {
       let advtSpaceList = this.$store.getters.selectedSpace
       console.log()
       console.log(this.selectedCO)
-      this.$router.push({ path: `/areaAdvtMng/coplan/new/${this.selectedCO.id}` })
+      this.$router.push({
+        path: `/areaAdvtMng/coplan/new/${this.selectedCO.id}`
+      })
 
       for (let item of advtSpaceList) {
         item.co_id = this.selectedCO.id
@@ -590,5 +603,13 @@ export default {
 .query_tool .box {
   width: 33%;
   margin-right: 20px;
+}
+
+.elli {
+  display: inline-block;
+  width: 180px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>
