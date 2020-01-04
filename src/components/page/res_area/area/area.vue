@@ -30,6 +30,7 @@
           <td>{{item.parking_num}}</td>
           <td>{{item.location}}</td>
           <td>{{item.avg_daily_traffic}}</td>
+          <td>{{item.total}}</td>
 
           <td v-formatTs="item.update_time"></td>
           <td class="justify-center layout px-0">
@@ -101,6 +102,7 @@ export default {
         { text: '停车位', value: 'parking_num', sortable: false },
         { text: '地址', value: 'location', sortable: false },
         { text: '日流量', value: 'avg_daily_traffic', sortable: false },
+        { text: '点位数量', value: 'total', sortable: false },
         { text: '更新时间', value: 'updatetime', sortable: false },
         { text: ' ', value: 'DO', sortable: false }
       ],
