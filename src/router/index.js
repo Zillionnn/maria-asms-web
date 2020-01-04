@@ -6,94 +6,99 @@ import Home from '@/components/page/home.vue'
 // import ResidentialArea from '@/components/page/res_area/area.vue'
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/allSpace',
-      name: 'allSpace',
-      component: () => import('@/components/page/AllSpace/AllSpace.vue')
-    },
-    {
-      path: '/setting',
-      name: 'setting',
-      // component: Setting
-      component: () => import('@/components/page/setting.vue')
-    },
-    {
-      path: '/co',
-      name: 'co',
-      // component: Co
-      component: () => import('@/components/page/co/co.vue')
-    },
-    {
-      path: '/resdentialArea',
-      name: 'areaIndex',
-      component: () => import('@/components/page/res_area/index.vue'),
-      children: [
-        {
-          path: '/resdentialArea/areas',
-          name: 'resarea',
-          component: () => import('@/components/page/res_area/area/area.vue')
-        },
-        {
-          path: '/resdentialArea/:id',
-          name: 'advtSpace',
-          component: () => import('@/components/page/res_area/areaAdvtSpaceMng/advtSpace.vue')
-        },
-        {
-          path: '/',
-          redirect: '/resdentialArea/areas'
-        }
-      ]
-    },
-    {
-      path: '/advt',
-      name: 'advt',
-      component: () => import('@/components/page/advt/advt.vue')
-    },
-    // areaAdvtMng
-    {
-      path: '/areaAdvtMng',
-      name: 'areaAdvtMng',
-      component: () => import('@/components/page/areaAdvtMng/index.vue'),
-      children: [
-        {
-          path: '/areaAdvtMng/spaces',
-          name: 'AdvertiseSpace',
-          component: () => import('@/components/page/areaAdvtMng/Spaces/AdvertiseSpace.vue')
-        },
-        {
-          path: '/areaAdvtMng/Lease',
-          name: 'Lease',
-          component: () => import('@/components/page/areaAdvtMng/LeasePage/Lease.vue')
-        },
-        {
-          path: `/areaAdvtMng/coplan/new/:co_id`,
-          name: 'NewCoPlan',
-          component: () => import('@/components/page/areaAdvtMng/NewCoPlan/NewCoPlan.vue')
-        },
-        {
-          // 查看企业的所有方案
-          path: '/areaAdvtMng/coplan/:co_id',
-          name: 'CoPlan',
-          component: () => import('@/components/page/areaAdvtMng/CoPlan/CoPlan.vue')
-        },
-        {
-          path: `/areaAdvtMng/releasecoplan`,
-          name: 'CoPlanToRelese',
-          component: () => import('@/components/page/areaAdvtMng/CoPlan/CoPlanToRelese.vue')
-        },
-        {
-          path: '/',
-          redirect: '/areaAdvtMng/Lease'
-        }
-      ]
-    }
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home
+  },
+  {
+    path: '/allSpace',
+    name: 'allSpace',
+    component: () => import('@/components/page/AllSpace/AllSpace.vue')
+  },
+  {
+    path: '/setting',
+    name: 'setting',
+    // component: Setting
+    component: () => import('@/components/page/setting.vue')
+  },
+  {
+    path: '/co',
+    name: 'co',
+    // component: Co
+    component: () => import('@/components/page/co/co.vue')
+  },
+  {
+    path: '/resdentialArea',
+    name: 'areaIndex',
+    component: () => import('@/components/page/res_area/index.vue'),
+    children: [
+      {
+        path: '/resdentialArea/areas',
+        name: 'resarea',
+        component: () => import('@/components/page/res_area/area/area.vue')
+      },
+      {
+        path: '/resdentialArea/:id',
+        name: 'advtSpace',
+        component: () => import('@/components/page/res_area/areaAdvtSpaceMng/advtSpace.vue')
+      },
+      {
+        path: '/',
+        redirect: '/resdentialArea/areas'
+      }
+    ]
+  },
+  {
+    path: '/advt',
+    name: 'advt',
+    component: () => import('@/components/page/advt/advt.vue')
+  },
+  // areaAdvtMng
+  {
+    path: '/areaAdvtMng',
+    name: 'areaAdvtMng',
+    component: () => import('@/components/page/areaAdvtMng/index.vue'),
+    children: [
+      {
+        path: '/areaAdvtMng/spaces',
+        name: 'AdvertiseSpace',
+        component: () => import('@/components/page/areaAdvtMng/Spaces/AdvertiseSpace.vue')
+      },
+      {
+        path: '/areaAdvtMng/Lease',
+        name: 'Lease',
+        component: () => import('@/components/page/areaAdvtMng/LeasePage/Lease.vue')
+      },
+      {
+        path: `/areaAdvtMng/coplan/new/:co_id`,
+        name: 'NewCoPlan',
+        component: () => import('@/components/page/areaAdvtMng/NewCoPlan/NewCoPlan.vue')
+      },
+      {
+        // 查看企业的所有方案
+        path: '/areaAdvtMng/coplan/:co_id',
+        name: 'CoPlan',
+        component: () => import('@/components/page/areaAdvtMng/CoPlan/CoPlan.vue')
+      },
+      {
+        path: `/areaAdvtMng/releasecoplan`,
+        name: 'CoPlanToRelese',
+        component: () => import('@/components/page/areaAdvtMng/CoPlan/CoPlanToRelese.vue')
+      },
+      {
+        path: '/',
+        redirect: '/areaAdvtMng/Lease'
+      }
+    ]
+  }
 
-  ]
+]
+
+const router = new Router({
+  mode: 'history',
+  routes
 })
+
+export default router
