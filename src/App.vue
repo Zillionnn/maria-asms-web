@@ -34,7 +34,7 @@
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>中山市一环传媒有限公司</v-toolbar-title>
+      <v-toolbar-title></v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-toolbar-items>
@@ -76,54 +76,54 @@ export default {
       sideMenuList: [
         {
           action: 'local_activity',
-          title: '概览',
+          title: 'HOME',
           route: '/'
-        },
-        // {
-        //   action: 'local_activity',
-        //   title: '广告位',
-        //   route: '/allSpace'
-        // },
-        {
-          action: 'done_all',
-          title: '租赁',
-          route: '/areaAdvtMng'
-          // active: true,
-          // items: [
-          //   { title: 'Breakfast & brunch' },
-          //   { title: 'New American' },
-          //   { title: 'Sushi' }
-          // ]
-        },
-        {
-          action: 'build',
-          title: '管理',
-          items: [
-            {
-              title: '企业管理',
-              route: '/co'
-            },
-            {
-              title: '广告管理',
-              route: '/advt'
-            },
-            {
-              title: '居民区',
-              route: '/resdentialArea'
-            }
-          ]
-        },
-        {
-          action: 'settings',
-          title: 'setting',
-          route: '/setting'
-          // active: true,
-          // items: [
-          //   { title: 'Breakfast & brunch' },
-          //   { title: 'New American' },
-          //   { title: 'Sushi' }
-          // ]
         }
+        // // {
+        // //   action: 'local_activity',
+        // //   title: '广告位',
+        // //   route: '/allSpace'
+        // // },
+        // {
+        //   action: 'done_all',
+        //   title: '租赁',
+        //   route: '/areaAdvtMng'
+        //   // active: true,
+        //   // items: [
+        //   //   { title: 'Breakfast & brunch' },
+        //   //   { title: 'New American' },
+        //   //   { title: 'Sushi' }
+        //   // ]
+        // },
+        // {
+        //   action: 'build',
+        //   title: '管理',
+        //   items: [
+        //     {
+        //       title: '企业管理',
+        //       route: '/co'
+        //     },
+        //     {
+        //       title: '广告管理',
+        //       route: '/advt'
+        //     },
+        //     {
+        //       title: '居民区',
+        //       route: '/resdentialArea'
+        //     }
+        //   ]
+        // },
+        // {
+        //   action: 'settings',
+        //   title: 'setting',
+        //   route: '/setting'
+        //   // active: true,
+        //   // items: [
+        //   //   { title: 'Breakfast & brunch' },
+        //   //   { title: 'New American' },
+        //   //   { title: 'Sushi' }
+        //   // ]
+        // }
       ],
 
       isDark: true,

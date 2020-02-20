@@ -1,19 +1,32 @@
 <template>
   <div class="page">
     <div style="width: 100%;height:auto;">
-        <v-btn @click="exportAll()">导出所有</v-btn>
+      <!-- <v-btn @click="exportAll()">导出所有</v-btn>
         <span class="head_text">未租用的广告位：{{norent}}</span><v-btn @click="exportNoRented()">导出</v-btn>
-        <span class="head_text">已租广告位：{{isRentedNum}}</span><v-btn @click="exportIsRented()">导出</v-btn>
-        <!-- <div style="width: 100%; height:800px;">
+        <span class="head_text">已租广告位：{{isRentedNum}}</span><v-btn @click="exportIsRented()">导出</v-btn> -->
+      <!-- <div style="width: 100%; height:800px;">
           <baidu-map/>
         </div> -->
+      <!-- <el-upload class="avatar-uploader" multiple ref="upload" action="http://106.12.40.54:2999/api/v1/uploadImg"
+        :show-file-list="true" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload"
+        :on-preview="handlePreview" :file-list="fileList" :auto-upload="false">
+        <v-btn size="small"  slot="trigger" color="primary">选择图片</v-btn>
+        <button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传</button>
 
+        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件</div>
+      </el-upload>
+
+      {{fileList}} -->
+      选择图片：<input type="file" id="fileInput" name="input" multiple="multiple" @change="loadFile()" />
+      <button  @click="submitUpload" >upload</button>
+<br/>
+<button @click="download">下载</button>
     </div>
   </div>
 </template>
 
 <script>
-import * as api from '@/api/index'
+import { http } from '@/api/index'
 import BaiduMap from '@/components/common/Map/BaiduMap/BaiduMap.vue'
 
 export default {
@@ -25,64 +38,71 @@ export default {
   data () {
     return {
       norent: 0,
-      isRentedNum: 0
+      isRentedNum: 0,
+      fileList: [],
+      form: null
     }
   },
-  created () {
-    this.getNoRent()
-    this.getIsRent()
-  },
-  mounted () {
-
-  },
+  created () {},
+  mounted () {},
   methods: {
-    getNoRent () {
-      api.areaAdvt.countNoRent()
-        .then(r => {
-          this.norent = r.data.data.count
-        })
-        .catch(err => {
-          console.error(err)
-          this.$message({
-            type: 'error',
-            message: err
-          })
+    loadFile (e) {
+      let files = document.getElementById('fileInput').files
+      console.log(files)
+      this.form = new FormData() // 创建form对象
+      for (let f of files) {
+        this.form.append('file', f) // 通过append向form对象添加数据
+      }
+      console.log('th isf.rom', this.form)
+      // let f = new FileReader()
+      // f.onprogress = e => {
+      //   console.log(e)
+      // }
+      // f.readAsDataURL(file)
+
+      // console.log(f)
+    },
+    submitUpload () {
+      let config = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }
+      http
+        .post('http://106.12.40.54:2999/api/v1/uploadImages', this.form, config)
+        .then(response => {
+          console.log(response.data)
         })
     },
 
-    getIsRent () {
-      api.areaAdvt.countIsRent()
-        .then(r => {
-          this.isRentedNum = r.data.data.count
-        })
-        .catch(err => {
-          console.error(err)
-          this.$message({
-            type: 'error',
-            message: err
-          })
+    download () {
+      http.get(`http://106.12.40.54:2999/api/v1/download-compress-image`)
+        .then((res) => {
+          window.open('http://106.12.40.54:2999/api/v1/download-compress-image')
         })
     },
-
-    exportNoRented () {
-      api.file.exportRentedExcel(0)
+    handlePreview (file) {
+      console.log(file)
     },
+    handleAvatarSuccess (res, file) {
+      console.log(res)
+      // this.imageUrl = URL.createObjectURL(file.raw)
+      // this.form.advt_position_image = res.data.path
 
-    exportIsRented () {
-      api.file.exportRentedExcel(1)
+      // console.log(this.form)
     },
-
-    exportAll () {
-      api.file.exportRentedExcel(2)
+    beforeAvatarUpload (file) {
+      // const isLt2M = file.size / 1024 / 1024 < 2
+      // if (!isLt2M) {
+      //   this.$message.error('上传头像图片大小不能超过 2MB!')
+      // }
+      // return isLt2M
     }
     // ////////////////////methods
   }
-
 }
 </script>
 
 <style scoped>
-.page{
+.page {
   width: 100%;
   height: 100%;
 }
@@ -93,7 +113,7 @@ export default {
   border-bottom: 1px solid;
 }
 
-.head_text{
+.head_text {
   font-size: 18px;
 }
 </style>
